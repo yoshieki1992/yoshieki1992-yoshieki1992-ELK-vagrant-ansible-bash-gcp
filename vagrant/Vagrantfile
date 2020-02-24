@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Specify minimum Vagrant version and Vagrant API version
+Vagrant.require_version ">= 1.6.0"
+VAGRANTFILE_API_VERSION = "2"
+ 
+# Require YAML module
+require 'yaml'
+ 
+# Read YAML file with box details
+servers = YAML.load_file(File.join(File.dirname(__FILE__), 'servers.yaml'))
+ 
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  servers.each do |servers|
+    config.vm.define servers["name"] do |srv|
+      srv.vm.box = servers["box"]
+      srv.ssh.insert_key = false
+      srv.ssh.private_key_path = [servers["privrsa"], "~/.vagrant.d/insecure_private_key"]
+      srv.vm.provision "file", source: servers["pubrsa"], destination: "~/.ssh/authorized_keys"
+      srv.vm.network "private_network", ip: servers["ip"]
+      srv.vm.network "public_network"
+      srv.vm.hostname = servers["name"]+".localhost"
+      srv.vm.provider :virtualbox do |vb|
+# Genera issues atachando discos
+#       vb.linked_clone = true
+      	vb.name = servers["name"]
+        vb.memory = servers["ram"]
+        unless File.exist?(servers["disk"])
+         vb.customize [ "internalcommands", "createrawvmdk", "-filename", servers["disk"], "-rawdisk", servers["lvnode"]]
+        end
+        vb.customize [ "storageattach", servers["name"] , "--storagectl", "IDE", "--port", "1", "--device", "0", "--type", "hdd" , "--medium", servers["disk"]]
+      end
+# Internal bash conf
+      srv.vm.provision "shell", path: servers["inconfig"]
+# External bash conf
+      srv.vm.provision "shell", path: servers["exconfig"]
+    end
+  end
+end

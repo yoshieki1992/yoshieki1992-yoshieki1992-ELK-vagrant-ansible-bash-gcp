@@ -1,0 +1,54 @@
+---
+- name: kibana
+  box: centos/7
+  ram: 1536
+  ip: 192.168.0.152
+  disk: /home/john_oros/dev/storage/node1.vmdk
+  lvnode: /dev/volgrp/node1
+  # Script interno para configs
+  inconfig: /home/john_oros/dev/int-config.sh
+  # Script externo para instalacion de packages
+  exconfig: https://gist.githubusercontent.com/yoshieki1992/b8e1e39880d1dc0b0a679765e37597a9/raw/19916f15b3979d7135bf748edfd6a6dacd64ad10/init-script.sh
+  #dock: false
+  #image: kibana:7.6.0 
+  privrsa: /home/john_oros/dev/keys/vagrant_rsa
+  pubrsa: /home/john_oros/dev/keys/vagrant_rsa.pub
+
+- name: elastic
+  box: centos/7
+  ram: 4056
+  ip: 192.168.0.153
+  disk: /home/john_oros/dev/storage/node2.vmdk
+  lvnode: /dev/volgrp/node2
+  inconfig: /home/john_oros/dev/int-config.sh
+  exconfig: https://gist.githubusercontent.com/yoshieki1992/b8e1e39880d1dc0b0a679765e37597a9/raw/19916f15b3979d7135bf748edfd6a6dacd64ad10/init-script.sh
+  #dock: false
+  #image: 
+  privrsa: /home/john_oros/dev/keys/vagrant_rsa
+  pubrsa: /home/john_oros/dev/keys/vagrant_rsa.pub
+
+- name: logstash
+  box: centos/7
+  ram: 1536
+  ip: 192.168.0.154
+  disk: /home/john_oros/dev/storage/node4.vmdk
+  lvnode: /dev/volgrp/node4
+  inconfig: /home/john_oros/dev/int-config.sh
+  exconfig: https://gist.githubusercontent.com/yoshieki1992/b8e1e39880d1dc0b0a679765e37597a9/raw/19916f15b3979d7135bf748edfd6a6dacd64ad10/init-script.sh
+  #dock: false
+  #image:  
+  privrsa: /home/john_oros/dev/keys/vagrant_rsa
+  pubrsa: /home/john_oros/dev/keys/vagrant_rsa.pub
+
+- name: client
+  box: centos/7
+  ram: 1024
+  ip: 192.168.0.155
+  disk: /home/john_oros/dev/storage/node3.vmdk
+  lvnode: /dev/volgrp/node3
+  inconfig: /home/john_oros/dev/int-config.sh
+  exconfig: https://gist.githubusercontent.com/yoshieki1992/b8e1e39880d1dc0b0a679765e37597a9/raw/19916f15b3979d7135bf748edfd6a6dacd64ad10/init-script.sh
+  #dock: false
+  #image:  
+  privrsa: /home/john_oros/dev/keys/vagrant_rsa
+  pubrsa: /home/john_oros/dev/keys/vagrant_rsa.pub

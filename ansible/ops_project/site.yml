@@ -1,0 +1,22 @@
+---
+- hosts: elastic
+  become: yes
+  roles:
+    - elastic.elasticsearch
+  vars:
+    es_version : 7.6.0
+
+- hosts: kibana
+  become: yes
+  roles:
+    - kibana
+
+- hosts: logstash 
+  become: yes 
+  roles:
+    - logstash
+
+- hosts: client
+  become: yes
+  roles:
+    - client

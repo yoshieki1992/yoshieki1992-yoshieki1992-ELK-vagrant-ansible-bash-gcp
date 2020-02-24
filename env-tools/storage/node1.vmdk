@@ -1,0 +1,24 @@
+# Disk DescriptorFile
+version=1
+CID=8a4d6a02
+parentCID=ffffffff
+createType="fullDevice"
+
+# Extent description
+RW 20971520 FLAT "/dev/volgrp/node1" 0
+
+# The disk Data Base 
+#DDB
+
+ddb.virtualHWVersion = "4"
+ddb.adapterType="ide"
+ddb.geometry.cylinders="16383"
+ddb.geometry.heads="16"
+ddb.geometry.sectors="63"
+ddb.uuid.image="dddc358f-9fd2-48b3-b7bb-73f080b6660a"
+ddb.uuid.parent="00000000-0000-0000-0000-000000000000"
+ddb.uuid.modification="7dbe5bc0-5dd1-452e-8ad9-863589bf4f16"
+ddb.uuid.parentmodification="00000000-0000-0000-0000-000000000000"
+ddb.geometry.biosCylinders="1024"
+ddb.geometry.biosHeads="255"
+ddb.geometry.biosSectors="63"

@@ -1,0 +1,9 @@
+---
+# tasks file for kibana
+- name: Pull and Start container
+  docker_container:
+    name: Kibana
+    image: kibana:{{ kibana_version }}
+    state: present
+    volumes:
+      - /mnt/vol1:/mnt/data
