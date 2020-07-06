@@ -1,4 +1,3 @@
-**
-Vagrant y bash para deploy de VMs
+**Vagrant y bash para deploy de VMs.
 Ansible para la gestion de configuracion.
 **
